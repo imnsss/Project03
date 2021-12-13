@@ -3,8 +3,15 @@
 
 PImage[] shape;
 Dot[] dot;
-int dotNum = 2001; // Number of dots
+
+boolean Begin = false;
+boolean Start = false;
+
+int bgColor = 0;
+int changeCol =100; // Color of the dots
 int form = -1; // form: -1/0/1/2/3
+int dotNum = 2001; // Number of dots
+
 
 void setup() {
   size(900, 700, P2D);
@@ -25,14 +32,14 @@ void setup() {
     dot[i] = new Dot();
     
     for (int n=0; n<4; n++) {
-      dot[i].oriPos[n] = new PVector(random(width), random(height));
-      color Color = shape[n].get(int(dot[i].oriPos[n].x), int(dot[i].oriPos[n].y));
+      dot[i].imgPos[n] = new PVector(random(width), random(height));
+      color Color = shape[n].get(int(dot[i].imgPos[n].x), int(dot[i].imgPos[n].y));
       
       //Check whether the color brightness is less than 150
       boolean flag = true; 
       while (brightness(Color)<150 || flag) {
-        dot[i].oriPos[n] = new PVector(random(width), random(height));
-        Color = shape[n].get(int(dot[i].oriPos[n].x), int(dot[i].oriPos[n].y));
+        dot[i].imgPos[n] = new PVector(random(width), random(height));
+        Color = shape[n].get(int(dot[i].imgPos[n].x), int(dot[i].imgPos[n].y));
         flag = false;
         
         // Determine whether the dots overlap
@@ -48,7 +55,23 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+ 
+  background(bgColor);
+  
+  
+      if(Begin == false){
+        scene1();
+      }
+      if(keyPressed && key == ' '){
+        Start = true;
+      }
+      if (Start == true) {
+         background(0);
+      }
+      
+  fill(0,0,0,25);
+  rect(0,0,width,height);
+  noStroke();
   
  for (int i=0; i<dotNum; i++) {   
     dot[i].display();
