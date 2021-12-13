@@ -7,6 +7,6 @@ This is an image processor that switches from images to dots and displays on the
 4. Gathering and dispersing dots can be done by pressing keys
 5. People will receive a hint when they start the program
 
-##Reference --
+## Reference --
 https://openprocessing.org/sketch/377231
 https://processing.org/examples/multipleparticlesystems.html
